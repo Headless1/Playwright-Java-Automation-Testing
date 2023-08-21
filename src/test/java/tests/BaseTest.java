@@ -10,6 +10,12 @@ public class BaseTest {
     public static Page page;
     public static BrowserContext context;
 
+    /**
+     * Sets up the basic environment for the test.
+     * Initializes the browser, page, and context.
+     * Встановлює базове середовище для тесту.
+     * Ініціалізує браузер, сторінку та контекст.
+     */
     public void setUp() {
         Playwright playwright = Playwright.create();
         browser = playwright
@@ -20,6 +26,12 @@ public class BaseTest {
         page = context.newPage();
     }
 
+    /**
+     * Executes the authorization process on the page.
+     * Uses a separate browser and context for state storage.
+     * Виконує процедуру авторизації на сторінці.
+     * Використовує окремий браузер та контекст для збереження стану.
+     */
     public void authorization() {
         Playwright playwright = Playwright.create();
         Browser browser1 = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
@@ -34,6 +46,10 @@ public class BaseTest {
 
     }
 
+    /**
+     * Executes authorization if the "authentication.json" file is absent.
+     * Виконує авторизацію, якщо файл "authentication.json" відсутній.
+     */
     public void authorizationIfNeeded(){
         File authFile = new File("authentication.json");
         if(!authFile.exists()){
@@ -46,6 +62,12 @@ public class BaseTest {
         page.navigate("https://opensource-demo.orangehrmlive.com/web/index.php/admin/viewSystemUsers");
     }
 
+    /**
+     * Completes the test workflow.
+     * Closes the context and browser.
+     * Завершує роботу тесту.
+     * Закриває контекст та браузер.
+     */
     public void tearDown() {
         try {
             Thread.sleep(5000);

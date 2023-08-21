@@ -12,7 +12,10 @@ public class InteractionWithEmployees {
         this.page = page;
     }
 
-
+    /**
+     * Fills in the data in the form.
+     * Заповнює дані в формі.
+     */
     public void fillEmployeeDetails(String employeeName, String username, String password, String confirmPassword){
         page.getByText("Add").click();
         page.click("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[1]/div/div[2]/div/div/div[2]/i");
@@ -30,6 +33,12 @@ public class InteractionWithEmployees {
         page.getByText("Save").click();
     }
 
+    /**
+     * Deletes an employee based on the target index.
+     * Видаляє співробітника за вказаним індексом.
+     *
+     * @param targetIndex The index of the employee to be deleted.
+     */
     public void deleteEmployee(int targetIndex) {
         List<Locator> deleteIcons = page.locator("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div/div/div[6]/div/button[1]/i").all();
 
@@ -37,7 +46,7 @@ public class InteractionWithEmployees {
             if (i == targetIndex) {
                 Locator icon = deleteIcons.get(i);
                 icon.click();
-                break; // Ви можете зупинити цикл після кліку, якщо це потрібно
+                break;
             }
         }
     }
