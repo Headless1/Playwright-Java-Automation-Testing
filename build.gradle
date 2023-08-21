@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation 'com.microsoft.playwright:playwright:1.31.0'
+    testImplementation 'io.rest-assured:rest-assured:4.5.1'
+    implementation 'com.aventstack:extentreports:5.0.9'
+    implementation 'org.jsoup:jsoup:1.15.3'
+    implementation 'org.freemarker:freemarker:2.3.31'
+    implementation 'javax.ws.rs:javax.ws.rs-api:2.1.1'
+}
+
+test {
+    useJUnitPlatform()
+}
