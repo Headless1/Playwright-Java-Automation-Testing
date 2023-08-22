@@ -5,7 +5,7 @@ import com.microsoft.playwright.*;
 import java.io.File;
 import java.nio.file.Paths;
 
-public class BaseTest {
+abstract public class BaseTest {
     public static Browser browser;
     public static Page page;
     public static BrowserContext context;
@@ -58,8 +58,8 @@ public class BaseTest {
     }
 
 
-    public void skipAuthorization(){
-        page.navigate("https://opensource-demo.orangehrmlive.com/web/index.php/admin/viewSystemUsers");
+    public void skipAuthorization(String url){
+        page.navigate(url);
     }
 
     /**

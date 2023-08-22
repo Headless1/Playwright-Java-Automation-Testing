@@ -5,14 +5,14 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class AdminUserManagement extends BaseTest{
+public class AdminUserManagementTest extends BaseTest{
 
     @BeforeEach
     public void setUpTest(){
         // Check for authorization and set up the environment before each test
         authorizationIfNeeded();
         setUp();
-        skipAuthorization();
+        skipAuthorization("https://opensource-demo.orangehrmlive.com/web/index.php/admin/viewSystemUsers");
     }
     @AfterEach
     public void tearDownTest(){
@@ -40,6 +40,19 @@ public class AdminUserManagement extends BaseTest{
         page.querySelector("//button[@type=\"submit\"]").click();
         Assertions.assertTrue(page.locator("//div[@class='oxd-table-body']//div[@class='oxd-table-cell oxd-padding-cell'][4]")
                 .textContent().contains(EmployeeName));
+    }
+
+    @Test
+    public void SearchEmployeePagesByUserRoleAndStatus(){
+        page.click("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[2]/div/div[2]/div/div/div[2]/i");
+        page.click("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[2]/div/div[2]/div/div[2]/div[3]/span");
+        page.click("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[4]/div/div[2]/div/div/div[2]/i");
+        page.click("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[4]/div/div[2]/div/div[2]/div[2]/span");
+        page.querySelector("//button[@type=\"submit\"]").click();
+        Assertions.assertTrue(page.locator("//div[@class=\"oxd-table-card\"][1]//*[text()='ESS']")
+                .textContent().contains("ESS"));
+        Assertions.assertTrue(page.locator("//div[@class=\"oxd-table-card\"][1]//*[text()='Enabled']")
+                .textContent().contains("Enabled"));
     }
 
     @Test
