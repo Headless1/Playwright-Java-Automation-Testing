@@ -1,4 +1,4 @@
-package tests;
+package core;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
@@ -23,7 +23,7 @@ public class InteractionWithEmployees {
         page.click("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[3]/div/div[2]/div/div/div[2]/i");
         page.click("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[3]/div/div[2]/div/div[2]/div[2]");
         page.fill("//div/input[@placeholder='Type for hints...']", employeeName);
-        page.click("//div[@class='oxd-autocomplete-option']/span[text()='David  Morris']");
+        page.click("//div[@class='oxd-autocomplete-option']/span");
         page.fill("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div/form/div[1]/div/div[4]/div/div[2]/input", username);
         page.fill("[type=password]", password);
         page.fill("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div/form/div[2]/div/div[2]/div/div[2]/input", confirmPassword);

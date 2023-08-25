@@ -1,6 +1,7 @@
-package tests;
+package core;
 
 import com.microsoft.playwright.*;
+import factory.BrowserFactory;
 
 import java.io.File;
 import java.nio.file.Paths;
@@ -9,6 +10,11 @@ abstract public class BaseTest {
     public static Browser browser;
     public static Page page;
     public static BrowserContext context;
+    private static BrowserFactory browserFactory;
+
+    public static void setBrowserFactory(BrowserFactory factory){
+        browserFactory = factory;
+    }
 
     /**
      * Sets up the basic environment for the test.
@@ -17,10 +23,7 @@ abstract public class BaseTest {
      * Ініціалізує браузер, сторінку та контекст.
      */
     public void setUp() {
-        Playwright playwright = Playwright.create();
-        browser = playwright
-                .chromium()
-                .launch(new BrowserType.LaunchOptions().setHeadless(false));
+        browser = browserFactory.createBrowser();
         context = browser.newContext(new Browser.NewContextOptions().setViewportSize(1920, 1080)
                 .setStorageStatePath(Paths.get("authentication.json")));
         page = context.newPage();

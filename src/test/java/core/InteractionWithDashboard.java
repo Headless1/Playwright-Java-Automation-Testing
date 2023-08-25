@@ -1,5 +1,6 @@
-package tests;
+package core;
 
+import com.microsoft.playwright.ElementHandle;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 
@@ -30,5 +31,10 @@ public class InteractionWithDashboard {
             for(Locator allMyAction : allMyActions){
                 System.out.println(allMyAction.textContent());
             }
+    }
+
+    public void itemChart() {
+        List<ElementHandle> itemDistribChart = page.querySelectorAll("#app > div.oxd-layout > div.oxd-layout-container > div.oxd-layout-context > div > div:nth-child(6) > div > div.orangehrm-dashboard-widget-body.--scroll-visible > div > ul > li > span.oxd-text.oxd-text--span");
+        System.out.println(itemDistribChart);
     }
 }

@@ -1,16 +1,20 @@
 package tests;
 
+import core.BaseTest;
+import factory.FireFoxBrowserFactory;
+import core.InteractionWithEmployees;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class AdminUserManagementTest extends BaseTest{
+public class AdminUserManagementTest extends BaseTest {
 
     @BeforeEach
     public void setUpTest(){
         // Check for authorization and set up the environment before each test
         authorizationIfNeeded();
+        setBrowserFactory(new FireFoxBrowserFactory());
         setUp();
         skipAuthorization("https://opensource-demo.orangehrmlive.com/web/index.php/admin/viewSystemUsers");
     }
@@ -59,9 +63,9 @@ public class AdminUserManagementTest extends BaseTest{
     public void AddNewUser(){
         // Adding a new user through InteractionWithEmployees class
         InteractionWithEmployees interactionWithEmployees= new InteractionWithEmployees(page);
-        interactionWithEmployees.fillEmployeeDetails("David  Morris", "Lesli.Nilson", "l1234567", "l1234567");
+        interactionWithEmployees.fillEmployeeDetails("John William", "Nilson.Lesli", "l1234567", "l1234567");
         interactionWithEmployees.submitForm();
-        Assertions.assertTrue(page.isVisible("//div[@class='oxd-toast-content oxd-toast-content--success']"));
+        Assertions.assertTrue(page.isVisible("//h5"));
     }
 
     @Test
